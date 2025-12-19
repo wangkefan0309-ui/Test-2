@@ -300,7 +300,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#fdfbf7] p-8">
+    <div style={{ minHeight: '100vh', height: 'auto', overflowY: 'auto', backgroundColor: '#fdfbf7', padding: '32px' }}>
       {/* 顶部标题 */}
       <div className="text-center mb-10">
         <h1 className="text-4xl text-red-600 font-bold">
@@ -412,10 +412,11 @@ function App() {
             <h2 className="text-xl font-bold mb-6 border-b-2 border-gray-800 pb-2">
               协议预览
             </h2>
-            {/* A4纸比例容器 */}
+            {/* 协议内容容器 */}
             <div
               id="agreement-preview"
-              className="w-full aspect-[210/297] aged-paper border border-gray-300 p-8 overflow-y-auto -webkit-overflow-scrolling: touch"
+              style={{ width: '100%', height: 'auto', backgroundColor: '#fdfaf2', border: '1px solid #ddd', padding: '32px', overflowY: 'auto' }}
+              className="aged-paper"
             >
               <div className="text-center mb-8">
                 <h1 className="text-2xl text-red-600 font-bold">
@@ -484,22 +485,37 @@ function App() {
               
               {/* 底部留白区域 */}
               <div className="pt-80"></div>
+              {/* 解决按钮遮挡内容问题的空 div */}
+              <div style={{ height: '160px' }}></div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 底部按钮区域 */}
-      <div className="text-center mt-10 px-4 mb-8 flex flex-col sm:flex-row gap-4 justify-center">
+      {/* 悬浮底部按钮区域 */}
+      <div style={{ position: 'fixed', bottom: '30px', left: '0', width: '100%', display: 'flex', justifyContent: 'center', gap: '20px', zIndex: '10000', padding: '0 20px', filter: 'drop-shadow(0 -5px 10px rgba(0,0,0,0.1))' }}>
         <button
           onClick={generateAgreement}
           disabled={isLoading}
-          className={`w-full sm:w-auto px-10 py-4 text-xl font-bold rounded-xl transition-all flex items-center gap-2 justify-center shadow-lg ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-black text-white hover:bg-gray-800 hover:shadow-xl'}`}
+          style={{
+            height: '50px',
+            fontSize: '1.2rem',
+            fontWeight: 'bold',
+            borderRadius: '12px',
+            backgroundColor: isLoading ? '#ccc' : '#1a237e',
+            color: 'white',
+            padding: '0 30px',
+            border: 'none',
+            cursor: isLoading ? 'not-allowed' : 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px'
+          }}
         >
           {isLoading ? (
             <>
               <Loader className="animate-spin" size={20} />
-              {currentLoadingMessage || '正在由法庭生成判决...'}
+              {currentLoadingMessage || '生成中...'}
             </>
           ) : (
             '生成最终协议'
@@ -507,7 +523,20 @@ function App() {
         </button>
         <button
           onClick={exportAsEvidence}
-          className="w-full sm:w-auto px-10 py-4 text-xl font-bold rounded-xl bg-blue-600 text-white hover:bg-blue-800 transition-all flex items-center gap-2 justify-center shadow-lg hover:shadow-xl"
+          style={{
+            height: '50px',
+            fontSize: '1.2rem',
+            fontWeight: 'bold',
+            borderRadius: '12px',
+            backgroundColor: '#b71c1c',
+            color: 'white',
+            padding: '0 30px',
+            border: 'none',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px'
+          }}
         >
           <Download size={20} />
           导出为证据
