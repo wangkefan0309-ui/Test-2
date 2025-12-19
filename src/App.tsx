@@ -15,16 +15,76 @@ function App() {
 
   // 本地搞笑惩罚措施库（API失败时的兜底）
   const punishmentLibrary = [
-    '违约方需在绝望坡来回折返跑三次，并大喊“我爱西政”',
-    '违约方需前往罗马广场，当众深情朗读一段《民法典》婚姻家庭编',
-    '违约方需帮全宿舍带饭一周，并运用微积分知识计算出送饭的最优路径',
-    '违约方需运用侦查学技巧，查出隔壁宿舍谁半夜打呼噜最大声',
-    '违约方需用商科思维，为宿舍制定一份“如果不挂科”的年度财务预算表',
-    '违约方需对着毓秀湖的黑天鹅忏悔三分钟：“我有罪，我不该内卷”',
-    '违约方需手抄《刑法》关于“滋事罪”的条款，并张贴在床头警示自己',
-    '违约方被剥夺未来一周在宿舍讨论“法考”的权利',
-    '违约方需模仿模拟法庭的审判长，敲着饭盆宣布“现在开庭”并给室友倒水',
-    '违约方需在朋友圈发誓：“我再也不说“A大”了，我要去图书馆占座”'
+    `啪（拍惊堂木声）
+【罪名】深夜夺魂索命噪音罪
+【事实】被告人于凌晨2点外放短视频，音量高达80分贝，严重侵犯原告休息权
+【判决】
+1. 责令被告人购买宿舍全员耳塞
+2. 罚抄《侵权责任法》关于相邻关系的条文10遍
+3. 剥夺其一周内使用音箱的权利`,
+    `经本室合议
+【罪名】宿舍资源滥用罪
+【事实】被告人长期占用宿舍公共洗衣机超过24小时，导致其他成员衣物堆积发霉
+【判决】
+1. 责令被告人清洗全宿舍一周的衣物
+2. 罚抄《民法典》关于共有物管理的条文10遍
+3. 剥夺其优先使用洗衣机的权利两周`,
+    `带被告人
+【罪名】深夜内卷扰民罪
+【事实】被告人于凌晨1点仍在宿舍背诵法考知识点，影响其他成员正常休息
+【判决】
+1. 责令被告人赔偿室友每人一杯咖啡
+2. 罚抄《宪法》关于休息权的条文10遍
+3. 一周内禁止在宿舍进行任何形式的学习活动`,
+    `肃静
+【罪名】宿舍环境破坏罪
+【事实】被告人长期不打扫个人区域，导致宿舍出现蟑螂滋生
+【判决】
+1. 责令被告人负责全宿舍灭鼠除虫工作
+2. 罚抄《环境保护法》关于生活环境的条文10遍
+3. 一周内负责宿舍每日清洁任务`,
+    `啪（拍惊堂木声）
+【罪名】食物盗窃罪
+【事实】被告人未经允许食用原告放在冰箱的酸奶，构成不当得利
+【判决】
+1. 责令被告人赔偿原告酸奶10盒
+2. 罚抄《民法典》关于不当得利的条文10遍
+3. 一周内禁止使用宿舍冰箱`,
+    `经本室合议
+【罪名】晚睡早起扰民罪
+【事实】被告人于清晨5点起床洗漱，噪音过大影响其他成员睡眠
+【判决】
+1. 责令被告人购买静音洗漱用品
+2. 罚抄《民法典》关于相邻关系的条文10遍
+3. 一周内只能在6点后起床`,
+    `带被告人
+【罪名】宿舍公约违反罪
+【事实】被告人多次违反宿舍公约，在宿舍内吸烟，危害公共健康
+【判决】
+1. 责令被告人负责全宿舍通风一周
+2. 罚抄《公共场所控制吸烟条例》全文10遍
+3. 剥夺其在宿舍内的吸烟权利`,
+    `肃静
+【罪名】公共资源浪费罪
+【事实】被告人长期忘记关闭宿舍空调，导致电费过高，损害全体成员利益
+【判决】
+1. 责令被告人承担当月全部电费
+2. 罚抄《节约能源法》关于公共资源节约的条文10遍
+3. 一周内负责关闭宿舍所有电器`,
+    `啪（拍惊堂木声）
+【罪名】信息泄露罪
+【事实】被告人未经允许泄露室友隐私，在朋友圈发布室友丑照
+【判决】
+1. 责令被告人删除相关内容并公开道歉
+2. 罚抄《民法典》关于隐私权的条文10遍
+3. 一周内禁止使用社交媒体`,
+    `经本室合议
+【罪名】深夜聚众扰民罪
+【事实】被告人在宿舍组织深夜聚会，影响其他成员及周边宿舍休息
+【判决】
+1. 责令被告人承担全宿舍一周的饮料费用
+2. 罚抄《治安管理处罚法》关于噪音污染的条文10遍
+3. 一个月内禁止在宿舍组织任何聚会活动`
   ]
 
   // 西政特色加载文案数组
@@ -75,7 +135,7 @@ function App() {
             messages: [
               {
                 role: 'system',
-                content: '你是一名西南政法大学的铁面无私且幽默的法官，精通《民法典》、商科知识和侦查学反侦察技巧。你的任务是根据用户的“宿舍违约行为”，制定一条具有西政校园特色的、搞笑的、带有学科知识点的惩罚措施。'
+                content: '你是一名西南政法大学的铁面无私且幽默的法官，精通《民法典》、商科知识和侦查学反侦察技巧。你的任务是根据用户的“宿舍违约行为”，制定一条具有西政校园特色的、搞笑的、带有学科知识点的惩罚措施。\n\n要求：\n1. 采用“判决书”式极简结构，每项惩罚必须包含：【罪名】、【事实与证据】、【判决结果】三个固定板块。\n2. 使用强制换行与列表，严禁出现超过3行的文字块。所有的惩罚措施必须使用1. 2. 3. 列表形式展现。\n3. 西政风格化：多用法律术语（如：罪名成立、责令、执行、驳回、公序良俗），少用AI常用词（如：我们需要、通过、让我们）。\n4. 增加随机感：不要每次都说‘肃静’。可以随机使用‘啪（拍惊堂木声）’、‘带被告人’、‘经本室合议’等开场。\n5. 内容示例：\n啪（拍惊堂木声）\n【罪名】深夜夺魂索命噪音罪。\n【事实】被告人于凌晨2点外放短视频，音量高达80分贝，严重侵犯原告休息权。\n【判决】\n1. 责令被告人购买宿舍全员耳塞。\n2. 罚抄《侵权责任法》关于相邻关系的条文10遍。\n3. 剥夺其一周内使用音箱的权利。'
               },
               {
                 role: 'user',
@@ -191,6 +251,52 @@ function App() {
     } catch (error) {
       console.error('导出图片失败:', error)
     }
+  }
+
+  // 渲染判决内容，添加加粗和图标
+  const renderVerdict = (verdict: string) => {
+    // 按行分割
+    const lines = verdict.split('\n')
+    
+    return lines.map((line, index) => {
+      // 移除空行
+      if (line.trim() === '') return null
+      
+      // 处理【罪名】
+      if (line.includes('【罪名】')) {
+        const parts = line.split('【罪名】')
+        return (
+          <div key={index} className="whitespace-pre-line font-bold">
+            {parts[0]}【罪名】{parts[1]}
+          </div>
+        )
+      }
+      
+      // 处理【判决】
+      if (line.includes('【判决】')) {
+        return (
+          <div key={index} className="whitespace-pre-line font-bold mt-2">
+            {line}
+          </div>
+        )
+      }
+      
+      // 处理列表项
+      if (/^\d+\.\s/.test(line)) {
+        return (
+          <div key={index} className="verdict-item whitespace-pre-line">
+            {line}
+          </div>
+        )
+      }
+      
+      // 其他行
+      return (
+        <div key={index} className="whitespace-pre-line">
+          {line}
+        </div>
+      )
+    })
   }
 
   return (
@@ -309,7 +415,7 @@ function App() {
             {/* A4纸比例容器 */}
             <div
               id="agreement-preview"
-              className="w-full aspect-[210/297] aged-paper border border-gray-300 p-8"
+              className="w-full aspect-[210/297] aged-paper border border-gray-300 p-8 overflow-y-auto -webkit-overflow-scrolling: touch"
             >
               <div className="text-center mb-8">
                 <h1 className="text-2xl text-red-600 font-bold">
@@ -346,9 +452,9 @@ function App() {
                         {index + 1}. {agreement || '______________________________'}
                       </p>
                       {punishments[index] && (
-                        <p className="text-red-600 text-sm ml-6">
-                          【违约责任】：{punishments[index]}
-                        </p>
+                        <div className="text-red-600 ml-6 mb-5">
+                          {renderVerdict(punishments[index])}
+                        </div>
                       )}
                     </div>
                   ))}
@@ -375,17 +481,20 @@ function App() {
               <div className="text-center text-xs text-gray-500 mt-8">
                 <p>法定见证人：毓秀湖黑天鹅 / 东园橘猫（自动签署）</p>
               </div>
+              
+              {/* 底部留白区域 */}
+              <div className="pt-80"></div>
             </div>
           </div>
         </div>
       </div>
 
       {/* 底部按钮区域 */}
-      <div className="text-center mt-10 flex justify-center gap-6">
+      <div className="text-center mt-10 px-4 mb-8 flex flex-col sm:flex-row gap-4 justify-center">
         <button
           onClick={generateAgreement}
           disabled={isLoading}
-          className={`px-8 py-3 text-lg font-bold rounded transition-colors flex items-center gap-2 justify-center ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-black text-white hover:bg-gray-800'}`}
+          className={`w-full sm:w-auto px-10 py-4 text-xl font-bold rounded-xl transition-all flex items-center gap-2 justify-center shadow-lg ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-black text-white hover:bg-gray-800 hover:shadow-xl'}`}
         >
           {isLoading ? (
             <>
@@ -398,7 +507,7 @@ function App() {
         </button>
         <button
           onClick={exportAsEvidence}
-          className="bg-blue-600 text-white px-8 py-3 text-lg font-bold rounded hover:bg-blue-800 transition-colors flex items-center gap-2"
+          className="w-full sm:w-auto px-10 py-4 text-xl font-bold rounded-xl bg-blue-600 text-white hover:bg-blue-800 transition-all flex items-center gap-2 justify-center shadow-lg hover:shadow-xl"
         >
           <Download size={20} />
           导出为证据
